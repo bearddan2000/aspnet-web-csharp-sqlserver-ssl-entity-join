@@ -1,0 +1,18 @@
+version: '3'
+
+services:
+  webapp:
+    build:
+      context: .
+    ports:
+      - "80:80"
+    volumes:
+      - ./pools:/etc/mono/pools
+    links:
+      - "sqlserver:sqlserver"
+
+  sqlserver:
+    build:
+      context: ./sqlserver
+    volumes:
+      - ./sqlserver/data_dump:/var/opt/mssql
